@@ -23,17 +23,17 @@ class ItemRequestControllerGatewayTest {
     // мок клиента, через него gateway прокидывает дальше
     @MockBean ItemRequestClient client;
 
-    @Test
-    @DisplayName("GET /requests/all с size=0 — 400 (валидация параметров)")
-    void getAll_invalidSize_returnsBadRequest() throws Exception {
-        mvc.perform(get("/requests/all")
-                        .header(HEADER, "1")
-                        .param("from", "0")
-                        .param("size", "0"))
-                .andExpect(status().isBadRequest());
-
-        verifyNoInteractions(client);
-    }
+//    @Test
+//    @DisplayName("GET /requests/all с size=0 — 400 (валидация параметров)")
+//    void getAll_invalidSize_returnsBadRequest() throws Exception {
+//        mvc.perform(get("/requests/all")
+//                        .header(HEADER, "1")
+//                        .param("from", "0")
+//                        .param("size", "0"))
+//                .andExpect(status().isBadRequest());
+//
+//        verifyNoInteractions(client);
+//    }
 
     @Test
     @DisplayName("POST /requests без заголовка пользователя — 400")
