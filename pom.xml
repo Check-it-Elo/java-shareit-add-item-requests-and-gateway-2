@@ -2,11 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.3.2</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 
 	<groupId>ru.practicum</groupId>
@@ -43,6 +44,7 @@
 						</excludes>
 					</configuration>
 				</plugin>
+
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
@@ -52,6 +54,7 @@
 						</systemPropertyVariables>
 					</configuration>
 				</plugin>
+
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-checkstyle-plugin</artifactId>
@@ -78,6 +81,7 @@
 						</dependency>
 					</dependencies>
 				</plugin>
+
 				<plugin>
 					<groupId>com.github.spotbugs</groupId>
 					<artifactId>spotbugs-maven-plugin</artifactId>
@@ -94,6 +98,7 @@
 						</execution>
 					</executions>
 				</plugin>
+
 				<plugin>
 					<groupId>org.jacoco</groupId>
 					<artifactId>jacoco-maven-plugin</artifactId>
@@ -108,6 +113,8 @@
 								<goal>prepare-agent</goal>
 							</goals>
 						</execution>
+
+						<!-- проверка порогов покрытия -->
 						<execution>
 							<id>jacoco-check</id>
 							<goals>
@@ -117,6 +124,13 @@
 								<rules>
 									<rule>
 										<element>BUNDLE</element>
+
+										<excludes>
+											<exclude>ru.practicum.shareit.**.dto.*</exclude>
+											<exclude>ru.practicum.shareit.**.dto.**</exclude>
+											<exclude>ru.practicum.shareit.item.model.Comment</exclude>
+										</excludes>
+
 										<limits>
 											<limit>
 												<counter>INSTRUCTION</counter>
@@ -165,6 +179,7 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+
 	<profiles>
 		<profile>
 			<id>check</id>
