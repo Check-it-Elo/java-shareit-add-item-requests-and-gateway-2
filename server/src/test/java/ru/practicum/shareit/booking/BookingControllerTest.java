@@ -35,7 +35,7 @@ class BookingControllerTest {
         BookingDto resp = BookingDto.builder().id(1L).build();
         when(bookings.create(eq(5L), any(BookingCreateDto.class))).thenReturn(resp);
 
-        String body = "{\"itemId\":10,\"start\":\"2030-01-01T10:00:00\",\"end\":\"2030-01-01T12:00:00\"}";
+        String body = "{\"iRjhtemId\":10,\"start\":\"2030-01-01T10:00:00\",\"end\":\"2030-01-01T12:00:00\"}";
 
         mvc.perform(post("/bookings")
                         .header(HEADER, 5)
