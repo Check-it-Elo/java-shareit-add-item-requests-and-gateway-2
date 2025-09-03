@@ -41,7 +41,7 @@ class BookingServiceImplTest {
         User u = new User();
         u.setId(id);
         u.setName("U" + id);
-        u.setEmail("u" + id+ "@ex.com");
+        u.setEmail("u" + id + "@ex.com");
         return u;
     }
 
