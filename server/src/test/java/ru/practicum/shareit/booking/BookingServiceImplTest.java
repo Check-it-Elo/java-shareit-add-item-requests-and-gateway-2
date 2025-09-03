@@ -41,7 +41,7 @@ class BookingServiceImplTest {
         User u = new User();
         u.setId(id);
         u.setName("U" + id);
-        u.setEmail("u"+id+"@ex.com");
+        u.setEmail("u" + id+ "@ex.com");
         return u;
     }
 
@@ -49,7 +49,7 @@ class BookingServiceImplTest {
         User owner = user(ownerId);
         Item it = new Item();
         it.setId(id);
-        it.setName("Item"+id);
+        it.setName("Item" + id);
         it.setOwner(owner);
         it.setAvailable(available);
         return it;

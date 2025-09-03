@@ -45,14 +45,14 @@ class ItemServiceImplTest {
         User u = new User();
         u.setId(id);
         u.setName("U" + id);
-        u.setEmail("u"+id+"@ex.com");
+        u.setEmail("u" + id + "@ex.com");
         return u;
     }
 
     private static Item item(long id, long ownerId, boolean available) {
         Item it = new Item();
         it.setId(id);
-        it.setName("Item"+id);
+        it.setName("Item" + id);
         it.setDescription("desc");
         it.setAvailable(available);
         User owner = user(ownerId);
