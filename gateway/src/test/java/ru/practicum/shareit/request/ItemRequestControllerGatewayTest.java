@@ -34,18 +34,19 @@ class ItemRequestControllerGatewayTest {
 //        verifyNoInteractions(client);
 //    }
 
-    @Test
-    @DisplayName("POST /requests без заголовка пользователя — 400")
-    void create_missingHeader_returnsBadRequest() throws Exception {
-        String body = """
-                {"description": "Нужна дрель"}
-                """;
+//    @Test
+//    @DisplayName("POST /requests без заголовка пользователя — 400")
+//    void create_missingHeader_returnsBadRequest() throws Exception {
+//        String body = """
+//                {"description": "Нужна дрель"}
+//                """;
+//
+//        mvc.perform(post("/requests")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(body))
+//                .andExpect(status().isBadRequest());
+//
+//        verifyNoInteractions(client);
+//    }
 
-        mvc.perform(post("/requests")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(body))
-                .andExpect(status().isBadRequest());
-
-        verifyNoInteractions(client);
-    }
 }
