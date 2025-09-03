@@ -91,7 +91,7 @@
 						<effort>Max</effort>
 						<threshold>High</threshold>
 						<failOnError>false</failOnError>
-						<excludeFilterFile>${project.basedir}/spotbugs-exclude.xml</excludeFilterFile>
+						<excludeFilterFile>${maven.multiModuleProjectDirectory}/spotbugs-exclude.xml</excludeFilterFile>
 					</configuration>
 					<executions>
 						<execution>
