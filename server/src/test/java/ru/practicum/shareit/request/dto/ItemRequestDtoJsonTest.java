@@ -36,7 +36,7 @@ class ItemRequestDtoJsonTest {
 
         assertThat(content).extractingJsonPathNumberValue("$.id").isEqualTo(11);
         assertThat(content).extractingJsonPathStringValue("$.description").isEqualTo("Ищу перфоратор");
-        // ISO-8601 без таймзоны (по умолчанию у Jackson в Boot)
+
         assertThat(content).extractingJsonPathStringValue("$.created").startsWith("2025-01-02T03:04:05");
         assertThat(content).extractingJsonPathArrayValue("$.items").hasSize(1);
         assertThat(content).extractingJsonPathNumberValue("$.items[0].id").isEqualTo(100);

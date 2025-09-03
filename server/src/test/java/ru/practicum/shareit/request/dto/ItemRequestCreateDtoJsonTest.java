@@ -18,7 +18,7 @@ class ItemRequestCreateDtoJsonTest {
     @DisplayName("ItemRequestCreateDto десериализуется из JSON по полю description")
     void deserialize_ItemRequestCreateDto_ok() throws Exception {
         String body = """
-                {
+                { 
                   "description": "Нужна дрель"
                 }
                 """;
