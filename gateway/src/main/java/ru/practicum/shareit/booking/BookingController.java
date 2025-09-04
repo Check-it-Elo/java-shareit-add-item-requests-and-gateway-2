@@ -15,11 +15,14 @@ import ru.practicum.shareit.booking.dto.BookItemRequestDto;
 @RequiredArgsConstructor
 @Validated
 public class BookingController {
+
 	private final BookingClient bookingClient;
+
+	private static final String USER_HEADER = "X-Sharer-User-Id";
 
 	@GetMapping
 	public ResponseEntity<Object> getBookings(
-			@RequestHeader("X-Sharer-User-Id") long userId,
+			@RequestHeader(USER_HEADER) long userId,
 			@RequestParam(name = "state", defaultValue = "ALL") String state,
 			@PositiveOrZero @RequestParam(name = "from", defaultValue = "0") Integer from,
 			@Positive @RequestParam(name = "size", defaultValue = "10") Integer size) {
@@ -28,7 +31,7 @@ public class BookingController {
 
 	@GetMapping("/owner")
 	public ResponseEntity<Object> getOwnerBookings(
-			@RequestHeader("X-Sharer-User-Id") long userId,
+			@RequestHeader(USER_HEADER) long userId,
 			@RequestParam(name = "state", defaultValue = "ALL") String state,
 			@PositiveOrZero @RequestParam(name = "from", defaultValue = "0") Integer from,
 			@Positive @RequestParam(name = "size", defaultValue = "10") Integer size) {
@@ -36,19 +39,19 @@ public class BookingController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Object> bookItem(@RequestHeader("X-Sharer-User-Id") long userId,
+	public ResponseEntity<Object> bookItem(@RequestHeader(USER_HEADER) long userId,
 										   @RequestBody @Valid BookItemRequestDto requestDto) {
 		return bookingClient.bookItem(userId, requestDto);
 	}
 
 	@GetMapping("/{bookingId}")
-	public ResponseEntity<Object> getBooking(@RequestHeader("X-Sharer-User-Id") long userId,
+	public ResponseEntity<Object> getBooking(@RequestHeader(USER_HEADER) long userId,
 											 @PathVariable Long bookingId) {
 		return bookingClient.getBooking(userId, bookingId);
 	}
 
 	@PatchMapping("/{bookingId}")
-	public ResponseEntity<Object> approve(@RequestHeader("X-Sharer-User-Id") long userId,
+	public ResponseEntity<Object> approve(@RequestHeader(USER_HEADER) long userId,
 										  @PathVariable long bookingId,
 										  @RequestParam boolean approved) {
 		return bookingClient.approve(userId, bookingId, approved);

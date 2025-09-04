@@ -50,7 +50,7 @@
 					<artifactId>maven-surefire-plugin</artifactId>
 					<configuration>
 						<systemPropertyVariables>
-							<spring.profiles.active>test</spring.profiles.active>
+							<spring.profiles.active>test,test-h2</spring.profiles.active>
 						</systemPropertyVariables>
 					</configuration>
 				</plugin>

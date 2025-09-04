@@ -18,27 +18,29 @@ public class ItemController {
 
     private final ItemClient client;
 
+    private static final String USER_HEADER = "X-Sharer-User-Id";
+
     @PostMapping
-    public ResponseEntity<Object> create(@RequestHeader("X-Sharer-User-Id") long userId,
+    public ResponseEntity<Object> create(@RequestHeader(USER_HEADER) long userId,
                                          @Valid @RequestBody ItemCreateDto dto) {
         return client.create(userId, dto);
     }
 
     @GetMapping("/{itemId}")
-    public ResponseEntity<Object> getById(@RequestHeader("X-Sharer-User-Id") long userId,
+    public ResponseEntity<Object> getById(@RequestHeader(USER_HEADER) long userId,
                                           @PathVariable long itemId) {
         return client.getById(userId, itemId);
     }
 
     @GetMapping
-    public ResponseEntity<Object> getOwnerItems(@RequestHeader("X-Sharer-User-Id") long userId,
+    public ResponseEntity<Object> getOwnerItems(@RequestHeader(USER_HEADER) long userId,
                                                 @PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
                                                 @Positive @RequestParam(defaultValue = "10") Integer size) {
         return client.getOwnerItems(userId, from, size);
     }
 
     @GetMapping("/search")
-    public ResponseEntity<Object> search(@RequestHeader("X-Sharer-User-Id") long userId,
+    public ResponseEntity<Object> search(@RequestHeader(USER_HEADER) long userId,
                                          @RequestParam String text,
                                          @PositiveOrZero @RequestParam(defaultValue = "0") Integer from,
                                          @Positive @RequestParam(defaultValue = "10") Integer size) {
@@ -46,7 +48,7 @@ public class ItemController {
     }
 
     @PostMapping("/{itemId}/comment")
-    public ResponseEntity<Object> addComment(@RequestHeader("X-Sharer-User-Id") long userId,
+    public ResponseEntity<Object> addComment(@RequestHeader(USER_HEADER) long userId,
                                              @PathVariable long itemId,
                                              @Valid @RequestBody CommentCreateDto dto) {
         return client.addComment(userId, itemId, dto);
