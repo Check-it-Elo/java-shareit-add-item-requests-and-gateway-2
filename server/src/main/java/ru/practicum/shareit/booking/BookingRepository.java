@@ -3,6 +3,7 @@ package ru.practicum.shareit.booking;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -52,5 +53,16 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
     // право комментировать: было ЗАВЕРШЁННОЕ APPROVED-бронирование этой вещи
     boolean existsByBooker_IdAndItem_IdAndEndBeforeAndStatus(
             Long userId, Long itemId, LocalDateTime before, BookingStatus status);
+
+    @Query("""
+    select (count(b) > 0) from Booking b
+    where b.item.id = :itemId
+    and b.booker.id = :userId
+    and b.status = 'APPROVED'
+    and b.end <= :now
+    """)
+    boolean existsPastBookingForComment(@Param("itemId") Long itemId,
+                                        @Param("userId") Long userId,
+                                        @Param("now") java.time.LocalDateTime now);
 
 }
