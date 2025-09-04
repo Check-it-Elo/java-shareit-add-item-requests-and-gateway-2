@@ -169,8 +169,10 @@ public class ItemServiceImpl implements ItemService {
         User author = users.findById(userId)
                 .orElseThrow(() -> new NoSuchElementException("User not found: " + userId));
 
+        // право комментировать — было завершённое APPROVED бронирование
         LocalDateTime now = LocalDateTime.now();
-        boolean allowed = bookings.existsPastBookingForComment(itemId, userId, now);
+        boolean allowed = bookings.existsByBooker_IdAndItem_IdAndEndBeforeAndStatus(
+                userId, itemId, now, BookingStatus.APPROVED);
 
         if (!allowed) {
             throw new IllegalArgumentException("User has no completed booking of this item");
