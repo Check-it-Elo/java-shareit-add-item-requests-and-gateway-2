@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <!-- Исключаем любые DTO (обычно Lombok, пустая логика) -->
+    <Match>
+        <Package name="~ru\.practicum\.shareit\..*\.dto(\..*)?"/>
+    </Match>
+
+    <!-- Исключаем «пустую» JPA-сущность без исполняемого кода -->
+    <Match>
+        <Class name="ru.practicum.shareit.item.model.Comment"/>
+    </Match>
+</FindBugsFilter>
